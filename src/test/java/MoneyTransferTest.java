@@ -182,7 +182,7 @@ class MoneyTransferTest {
 
     @Test
     void transferAmountMoreFirstCard() {
-        int actual1 = dashboardPage.depositFirstCard().deposit(15000, DataHelper.secondCardNumber())
+        int actual1 = dashboardPage.depositFirstCard().deposit(12000, DataHelper.secondCardNumber())
                 .getFirstCardBalance();
         int actual2 = dashboardPage.getSecondCardBalance();
         Assertions.assertEquals(10000, actual2);

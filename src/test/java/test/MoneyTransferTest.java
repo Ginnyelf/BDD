@@ -1,8 +1,14 @@
+package test;
+
 import com.codeborne.selenide.Condition;
+import data.DataHelper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import page.DashboardPage;
+import page.LoginPage;
+import page.MoneyTransferPage;
 
 
 import static com.codeborne.selenide.Selenide.open;
@@ -33,7 +39,7 @@ class MoneyTransferTest {
     }
 
     @Test
-    void PositiveFirstCardToSecond() {
+    void positiveFirstCardToSecond() {
         int actual1 = dashboardPage.depositFirstCard().deposit(4155, DataHelper.secondCardNumber())
                 .getFirstCardBalance();
         Assertions.assertEquals(14155, actual1);
@@ -42,7 +48,7 @@ class MoneyTransferTest {
     }
 
     @Test
-    void PositiveSecondCardToFirst() {
+    void positiveSecondCardToFirst() {
         int actual = dashboardPage.depositSecondCard().deposit(6578, DataHelper.firstCardNumber())
                 .getSecondCardBalance();
         Assertions.assertEquals(16578, actual);
@@ -140,7 +146,7 @@ class MoneyTransferTest {
         MoneyTransferPage transferPage = dashboardPage.depositFirstCard();
         transferPage.setAmount(300);
         transferPage.setSourceCard(DataHelper.secondCardNumber());
-        new MoneyTransferPage().clickCancel();
+        transferPage.clickCancel();
         int actual1 = dashboardPage.getFirstCardBalance();
         Assertions.assertEquals(10000, actual1);
         int actual2 = dashboardPage.getSecondCardBalance();
@@ -156,10 +162,7 @@ class MoneyTransferTest {
     @Test
     void specialSymbolAndLettersInAmountField() {
         MoneyTransferPage transferPage = dashboardPage.depositFirstCard();
-        transferPage.amount.sendKeys(Keys.CONTROL + "A");
-        transferPage.amount.sendKeys(Keys.DELETE);
-        transferPage.amount.setValue("-+/").shouldBe(Condition.empty);
-        transferPage.amount.setValue("asdf").shouldBe(Condition.empty);
+        transferPage.specialSymbolAndLettersInAmountField();
     }
 
     @Test

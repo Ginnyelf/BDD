@@ -20,7 +20,7 @@ public class MoneyTransferPage {
     }
 
     public DashboardPage deposit(int depositAmount, String sourceCard) {
-        setAmount(depositAmount);
+        setAmount(String.valueOf(depositAmount));
         setSourceCard(sourceCard);
         depositButton.click();
         return new DashboardPage();
@@ -32,10 +32,10 @@ public class MoneyTransferPage {
         cardFrom.setValue(sourceCard);
     }
 
-    public void setAmount(int depositAmount) {
-        getAmount().sendKeys(Keys.CONTROL + "A");
-        getAmount().sendKeys(Keys.DELETE);
-        getAmount().setValue(Integer.toString(depositAmount));
+    public void setAmount(String depositAmount) {
+        amount.sendKeys(Keys.CONTROL + "A");
+        amount.sendKeys(Keys.DELETE);
+        amount.setValue(Integer.toString(Integer.parseInt(depositAmount)));
     }
 
     public void checkErrorVisible() {
@@ -47,14 +47,9 @@ public class MoneyTransferPage {
     }
 
 
-    public SelenideElement getAmount() {
-        return amount;
-    }
-    public void specialSymbolAndLettersInAmountField(){
-        getAmount().sendKeys(Keys.CONTROL + "A");
-        getAmount().sendKeys(Keys.DELETE);
-        getAmount().setValue("-+/").shouldBe(Condition.empty);
-        getAmount().setValue("asdf").shouldBe(Condition.empty);
+    public void specialSymbolAndLettersInAmountField() {
+        amount.setValue("-+/").shouldBe(Condition.empty);
+        amount.setValue("asdf").shouldBe(Condition.empty);
 
     }
 

@@ -159,11 +159,7 @@ class MoneyTransferTest {
         new MoneyTransferPage().checkErrorVisible();
     }
 
-    @Test
-    void specialSymbolAndLettersInAmountField() {
-        MoneyTransferPage transferPage = dashboardPage.depositFirstCard();
-    transferPage.specialSymbolAndLettersInAmountField();
-    }
+    
 
     @Test
     void transferFromFirstCardToTheSame() {

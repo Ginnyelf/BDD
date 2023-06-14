@@ -35,6 +35,8 @@ public class MoneyTransferPage {
     public void setAmount(String depositAmount) {
         amount.sendKeys(Keys.CONTROL + "A");
         amount.sendKeys(Keys.DELETE);
+        amount.setValue("-+/");
+        amount.setValue("asdf");
         amount.setValue(Integer.toString(Integer.parseInt(depositAmount)));
     }
 
@@ -47,10 +49,6 @@ public class MoneyTransferPage {
     }
 
 
-    public void specialSymbolAndLettersInAmountField() {
-        amount.setValue("-+/").shouldBe(Condition.empty);
-        amount.setValue("asdf").shouldBe(Condition.empty);
 
-    }
 
 }

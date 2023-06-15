@@ -35,9 +35,7 @@ public class MoneyTransferPage {
     public void setAmount(String depositAmount) {
         amount.sendKeys(Keys.CONTROL + "A");
         amount.sendKeys(Keys.DELETE);
-        amount.setValue("-+/");
-        amount.setValue("asdf");
-        amount.setValue(Integer.toString(Integer.parseInt(depositAmount)));
+        amount.setValue(depositAmount);
     }
 
     public void checkErrorVisible() {
